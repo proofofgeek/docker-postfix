@@ -1,5 +1,6 @@
+### A postfix MTA to relay emails from your Docker containers or host apps to a real SMTP server for delivery - https://github.com/proofofgeek/docker-postfix  
 - This works for me (and it might work for you)
-  - Tried to make this super simple and generic for basic use cases
+  - Tried to make this super simple and generic for most standard use cases
   - Host, containers and apps can relay mail through it (see setup below)
   - Probably won't work with company and/or non-standard email setups
 
@@ -22,8 +23,6 @@
   System mail name: yourdomain.com  
   SMTP relay host: postfix:2525  
   `echo "test" | mail -s "test from another container" abc@yourdomain.com` (or root)
-
-- Issues? https://github.com/proofofgeek/docker-postfix
 
 - Notes and random thoughts:
   - automagically configure docker networking
