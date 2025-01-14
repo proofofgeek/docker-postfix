@@ -1,3 +1,6 @@
+# Probably need to change:
+# mynetworks = 127.0.0.0/8 172.18.0.0/16
+
 FROM ubuntu:latest
 
 LABEL maintainer="proofofgeek.com"

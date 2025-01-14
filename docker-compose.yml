@@ -13,7 +13,7 @@ services:
     ports:
       - ${HOST_PORT}:25
     restart: unless-stopped
-networks:
-  default:
-    name: shared 
-    external: true
+#networks:
+#  default:
+#    name: shared 
+#    external: true
