@@ -9,6 +9,7 @@ services:
         SMTP_DOMAIN: ${SMTP_DOMAIN}
         SMTP_PORT: ${SMTP_PORT}
     container_name: postfix
+    image: postfix
     ports:
       - ${HOST_PORT}:25
     restart: unless-stopped
