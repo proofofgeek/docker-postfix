@@ -1,19 +1,18 @@
 services:
-  smtp:
+  postfix:
     build:
       context: .
       args:
-        EMAIL_USER: ${APP_USER}
-        EMAIL_PASSWORD: ${APP_PASSWORD}
-        ALIAS_EMAIL: ${ALIAS_EMAIL}
+        APP_USER: ${APP_USER}
+        APP_PASSWORD: ${APP_PASSWORD}
         MAIL_NAME: ${MAIL_NAME}
         SMTP_DOMAIN: ${SMTP_DOMAIN}
         SMTP_PORT: ${SMTP_PORT}
     container_name: postfix
     ports:
-      - ${PORT}:25
+      - ${HOST_PORT}:25
     restart: unless-stopped
-#networks:
-#  default:
-#    name: shared 
-#    external: true
+networks:
+  default:
+    name: shared 
+    external: true
