@@ -1,5 +1,5 @@
-# Probably need to change:
-# mynetworks = 127.0.0.0/8 172.18.0.0/16
+# If you've created a new network (you should) change:
+# mynetworks = 127.0.0.0/8 172.17.0.0/16
 
 FROM ubuntu:latest
 
@@ -18,7 +18,7 @@ RUN apt-get update && \
 COPY main.cf /etc/postfix/main.cf
 
 RUN sh -c 'printf "### CHANGES ###\n" >> /etc/postfix/main.cf' && \
-    sh -c 'printf "mynetworks = 127.0.0.0/8 172.18.0.0/16\n" >> /etc/postfix/main.cf' && \
+    sh -c 'printf "mynetworks = 127.0.0.0/8 172.17.0.0/16\n" >> /etc/postfix/main.cf' && \
     sh -c 'printf "myhostname = postfix.${MAIL_NAME}\n" >> /etc/postfix/main.cf' && \
     sh -c 'printf "relayhost = [${SMTP_DOMAIN}]:${SMTP_PORT}\n" >> /etc/postfix/main.cf' && \
     sh -c 'printf "[${SMTP_DOMAIN}]:${SMTP_PORT} ${APP_USER}:${APP_PASSWORD}\n" > /etc/postfix/sasl_passwd' && \

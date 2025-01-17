@@ -1,14 +1,16 @@
 ### A postfix MTA to relay emails from your Docker containers or host apps to a real SMTP server for delivery - https://github.com/proofofgeek/docker-postfix  
 - This works for me (and it might work for you)
-  - Tried to make this super simple and generic for most standard use cases
-  - Host, containers and apps can relay mail through it (see setup below)
-  - Probably won't work with company and/or non-standard email setups
+  - Tried to make this simple and generic for most standard use cases
+  - Your other containers and apps can relay mail through it (see setup below)
 
 1. `git clone https://github.com/proofofgeek/docker-postfix && cd docker-postfix`
 
-2. edit .env to set your specific config
+2. Edit .env to set your specific config
 
-3. review (and edit if needed) all other files, e.g. network settings
+3. Review (and edit) all other files
+  - e.g. if you've created a new network you will need to update:
+      - `mynetworks = 127.0.0.0/8 172.17.0.0/16` in Dockerfile
+      - uncomment and change `name: shared` in docker-compose.yml  
 
 4. `docker compose up -d`
 
@@ -17,14 +19,14 @@
   `echo "test" | mail -s "test from postfix" abc@yourdomain.com` (or root)  
   `tail -f /var/log/mail.log`
   
-- Configure another container (connected to the same docker network):  
+- Configure another container (on the same network):  
   `sudo apt install postfix`  
   Select "4. Satellite System"  
   System mail name: yourdomain.com  
   SMTP relay host: postfix:2525  
   `echo "test" | mail -s "test from another container" abc@yourdomain.com` (or root)
 
-- Notes and random thoughts:
+- Notes / To do:
   - automagically configure docker networking
   - switch to alpine base?  
   - better way to build without .env?
