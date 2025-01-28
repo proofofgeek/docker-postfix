@@ -1,6 +1,3 @@
-# if not using the default docker network (bridge) you need to change:
-# mynetworks = 127.0.0.0/8 172.17.0.0/16
-
 FROM ubuntu:latest
 
 LABEL maintainer="proofofgeek.com"
@@ -18,6 +15,8 @@ RUN apt-get update && \
 COPY main.cf /etc/postfix/main.cf
 
 RUN sh -c 'printf "### CHANGES ###\n" >> /etc/postfix/main.cf' && \
+# if not using the default docker network (bridge) you need to change:
+# 172.17.0.0/16 to your subnet
     sh -c 'printf "mynetworks = 127.0.0.0/8 172.17.0.0/16\n" >> /etc/postfix/main.cf' && \
     sh -c 'printf "myhostname = postfix.${MAIL_NAME}\n" >> /etc/postfix/main.cf' && \
     sh -c 'printf "relayhost = [${SMTP_DOMAIN}]:${SMTP_PORT}\n" >> /etc/postfix/main.cf' && \
