@@ -1,5 +1,7 @@
+# bridge is the default docker network
+
 services:
-  postfix:
+  smtp-relay:
     build:
       context: .
       args:
@@ -9,11 +11,9 @@ services:
         SMTP_DOMAIN: ${SMTP_DOMAIN}
         SMTP_PORT: ${SMTP_PORT}
     container_name: postfix
-    image: postfix
+    image: proofofgeek/postfix
+    pull_policy: build
     ports:
       - ${HOST_PORT}:25
     restart: unless-stopped
-#networks:
-#  default:
-#    name: shared 
-#    external: true
+    network_mode: bridge

@@ -1,4 +1,4 @@
-# If you've created a new network (you should) change:
+# if not using the default docker network (bridge) you need to change:
 # mynetworks = 127.0.0.0/8 172.17.0.0/16
 
 FROM ubuntu:latest
