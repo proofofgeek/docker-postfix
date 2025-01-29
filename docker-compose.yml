@@ -15,4 +15,4 @@ services:
       - ${HOST_PORT}:25
     restart: unless-stopped
 # bridge is the default docker network
-    network_mode: bridge
+#   network_mode: bridge
